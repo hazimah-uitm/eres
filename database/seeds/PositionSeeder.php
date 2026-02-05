@@ -15,22 +15,52 @@ class PositionSeeder extends Seeder
         Position::insert([
             [
                 'title' => 'Pegawai Teknologi Maklumat',
-                'grade' => 'F41',
+                'grade' => 'F9',
                 'publish_status' => true
             ],
             [
-                'title' => 'Penolong Pegawai Teknologi Maklumat Kanan',
-                'grade' => 'FA32',
+                'title' => 'Penolong Pendaftar Kanan',
+                'grade' => 'N10',
                 'publish_status' => true
             ],
             [
-                'title' => 'Penolong Pegawai Teknologi Maklumat',
-                'grade' => 'FA29',
+                'title' => 'Penolong Pendaftar',
+                'grade' => 'N9',
                 'publish_status' => true
             ],
             [
-                'title' => 'Juruteknik Komputer',
-                'grade' => 'FT22',
+                'title' => 'Pensyarah',
+                'grade' => 'DS11',
+                'publish_status' => true
+            ],
+            [
+                'title' => 'Pensyarah Kanan',
+                'grade' => 'DS13',
+                'publish_status' => true
+            ],
+            [
+                'title' => 'Pensyarah Kanan Khas',
+                'grade' => 'SKU3',
+                'publish_status' => true
+            ],
+            [
+                'title' => 'Profesor',
+                'grade' => 'VK7',
+                'publish_status' => true
+            ],
+            [
+                'title' => 'Profesor Khas',
+                'grade' => 'SKU1',
+                'publish_status' => true
+            ],
+            [
+                'title' => 'Profesor Madya',
+                'grade' => 'DS14',
+                'publish_status' => true
+            ],
+            [
+                'title' => 'Profesor Madya Khas',
+                'grade' => 'SKU2',
                 'publish_status' => true
             ],
         ]);

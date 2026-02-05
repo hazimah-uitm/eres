@@ -76,6 +76,11 @@
     <script src="{{ asset('public/assets/js/index.js') }}"></script>
     <!--app JS-->
     <script src="{{ asset('public/assets/js/app.js') }}"></script>
+    <!-- Select2 CSS -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/css/select2.min.css" rel="stylesheet" />
+    <!-- Select2 JS -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/js/select2.min.js"></script>
+
     <script>
         document.addEventListener('DOMContentLoaded', function() {
             // Get the toggle icon element
@@ -95,7 +100,7 @@
         var currentYear = new Date().getFullYear();
 
         // Update the content of the element with the current year
-        document.getElementById("copyright").innerHTML = 'Copyright © ' + currentYear +
+        document.getElementById("copyright").innerHTML = '© ' + currentYear +
             ' <a href="https://sarawak.uitm.edu.my/" target="_blank">UiTM Cawangan Sarawak</a>.';
     </script>
     <script>
