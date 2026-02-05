@@ -6,7 +6,6 @@ use App\Models\Campus;
 use App\Models\Position;
 use App\Models\Ptj;
 use App\Models\User;
-use App\Notifications\EmailVerificationNotification;
 use App\Notifications\ResetPasswordNotification;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Http\Request;
@@ -15,6 +14,7 @@ use Illuminate\Support\Facades\Password;
 use Spatie\Permission\Models\Role;
 use Illuminate\Support\Str;
 use App\Models\EmailVerificationToken;
+use App\Notifications\EmailVerificationNotification;
 use Illuminate\Support\Carbon;
 
 class UserController extends Controller
@@ -76,8 +76,7 @@ class UserController extends Controller
             'ptj_id' => 'required',
             'roles'    => 'required|array|exists:roles,name',
             'campus_id' => 'required|exists:campuses,id',
-            'phone_no' => 'nullable|string',
-            'user_type' => 'required|string',
+            'office_phone_no' => 'nullable|string',
             'publish_status' => 'required|in:1,0',
         ], [
             'name.required'     => 'Sila isi nama pengguna',
@@ -87,7 +86,6 @@ class UserController extends Controller
             'email.unique'    => 'Emel telah wujud',
             'position_id.required' => 'Sila isi jawatan pengguna',
             'ptj_id.required' => 'Sila isi jawatan pengguna',
-            'user_type.required'    => 'Sila isi jenis pengguna',
             'roles.required'    => 'Sila isi peranan pengguna',
             'campus_id.required' => 'Sila isi kampus pengguna',
             'publish_status.required' => 'Sila isi status pengguna',
@@ -149,7 +147,7 @@ class UserController extends Controller
             $user->email = $row['email'];
             $user->position_id = $row['position_id'] ?? null;
             $user->campus_id = $row['campus_id'] ?? null;
-            $user->department_id = $row['department_id'] ?? null;
+            $user->ptj_id = $row['ptj_id'] ?? null;
             $user->office_phone_no = $row['office_phone_no'] ?? null;
             $user->publish_status = $row['publish_status'] ?? 1;
             $user->password = null;
@@ -171,7 +169,15 @@ class UserController extends Controller
 
     public function showPengesahanAkaunForm()
     {
-        return view('auth.pengesahan-akaun');
+        $user = null;
+
+        $staffId = old('staff_id') ?: session('staff_id');
+
+        if ($staffId) {
+            $user = User::where('staff_id', $staffId)->first();
+        }
+
+        return view('auth.pengesahan-akaun', compact('user'));
     }
 
     public function handleFirstTime(Request $request)
@@ -183,16 +189,15 @@ class UserController extends Controller
         $staffId = $request->staff_id;
         $user = User::where('staff_id', $staffId)->first();
 
-if (!$user) {
-    return back()
-        ->withErrors([
-            'staff_id' => 
-                'No. pekerja tidak ditemui. Sila hubungi moderator: Hazimah (082-678118) atau 
+        if (!$user) {
+            return back()
+                ->withErrors([
+                    'staff_id' =>
+                    'No. pekerja tidak ditemui. Sila hubungi moderator: Hazimah (082-678118) atau 
                 <a href="https://wa.me/6082678118" target="_blank">Klik untuk WhatsApp</a>'
-        ])
-        ->withInput();
-}
-
+                ])
+                ->withInput();
+        }
 
         if ($user->email_verified_at) {
             return redirect()->route('login')
@@ -204,14 +209,16 @@ if (!$user) {
 
             $request->validate([
                 'email' => 'required|email|unique:users,email,' . $user->id,
-                'password' => 'required|min:8|confirmed',
+                'password' => 'required|min:8',
+                'password_confirmation' => 'required|same:password',
             ], [
                 'email.required' => 'Sila isi alamat emel.',
                 'email.email' => 'Emel tidak sah.',
                 'email.unique' => 'Emel ini telah digunakan.',
                 'password.required' => 'Sila isi kata laluan.',
                 'password.min' => 'Kata laluan mesti sekurang-kurangnya 8 aksara.',
-                'password.confirmed' => 'Sahkan kata laluan tidak sepadan.',
+                'password_confirmation.required' => 'Sila sahkan kata laluan.',
+                'password_confirmation.same' => 'Sahkan kata laluan tidak sepadan.',
             ]);
 
             $user->email = $request->email;
@@ -232,7 +239,9 @@ if (!$user) {
         }
 
         // Else: Tunjukkan form dengan detail user prefilled
-        return view('auth.pengesahan-akaun', compact('user'));
+        return redirect()
+            ->route('pengesahanakaun.form')
+            ->with('staff_id', $staffId);
     }
 
     public function showPublicRegisterForm()
@@ -264,12 +273,9 @@ if (!$user) {
                 },
             ],
             'password' => 'required|min:8|confirmed',
-            'user_type' => 'required|in:staf akademik,staf pentadbiran',
         ], [
             'staff_id.required' => 'Sila isi No. Pekerja UiTM',
             'staff_id.unique' => 'No. Pekerja telah wujud',
-            'user_type.required' => 'Sila pilih jenis pengguna',
-            'user_type.in' => 'Jenis pengguna tidak sah',
             'campus_id.required' => 'Sila pilih kampus',
             'campus_id.exists' => 'Kampus tidak sah',
             'position_id.required' => 'Sila pilih jawatan',
@@ -284,7 +290,6 @@ if (!$user) {
         $user->email = $request->email;
         $user->campus_id = $request->campus_id;
         $user->password = Hash::make($request->password);
-        $user->user_type = $request->user_type;
         $user->position_id = $request->position_id;
         $user->ptj_id = $request->ptj_id;
         $user->publish_status = 1;
@@ -373,19 +378,16 @@ if (!$user) {
             'ptj_id' => 'required|exists:ptjs,id',
             'roles'      => 'required|array|exists:roles,name',
             'campus_id'  => 'required|exists:campuses,id',
-            'phone_no' => 'nullable|string',
-            'user_type' => 'required|string',
+            'office_phone_no' => 'nullable|string',
             'publish_status' => 'required|in:1,0',
         ], [
             'name.required'     => 'Sila isi nama pengguna',
             'staff_id.required' => 'Sila isi no. pekerja pengguna',
             'staff_id.unique' => 'No. pekerja telah wujud',
-            'email.required'    => 'Sila isi emel pengguna',
             'email.unique'    => 'Emel telah wujud',
             'position_id.required' => 'Sila isi jawatan pengguna',
             'ptj_id.required' => 'Sila isi ptj pengguna',
             'roles.required'    => 'Sila isi peranan pengguna',
-            'user_type.required'    => 'Sila isi jenis pengguna',
             'campus_id.required' => 'Sila isi kampus pengguna',
             'publish_status.required' => 'Sila isi status pengguna',
         ]);

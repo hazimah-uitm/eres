@@ -10,7 +10,6 @@
                         <img src="{{ asset('public/assets/images/putih.png') }}" class="logo-icon-login" alt="logo icon">
                         <div class="ms-3">
                             <h4 class="logo-text-login mb-0">eRES</h4>
-                            <h6 class="logo-subtitle-login mb-0">Unit Penilaian Akademik</h6>
                         </div>
                     </div>
                 </div>
@@ -84,11 +83,11 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="d-flex justify-content-end">
+                        {{-- <div class="d-flex justify-content-end">
                             <a href="{{ route('manual-pengguna') }}" target="_blank" class="btn btn-info btn-sm"><i
                                     class="bx bxs-file-pdf me-2"></i>Manual Pengguna
                             </a>
-                        </div>
+                        </div> --}}
                     </div>
                 </div>
             </div>

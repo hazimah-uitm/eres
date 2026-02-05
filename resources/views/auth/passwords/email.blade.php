@@ -9,7 +9,6 @@
                         <img src="{{ asset('public/assets/images/putih.png') }}" class="logo-icon-login" alt="logo icon">
                         <div class="ms-3">
                             <h4 class="logo-text-login mb-0">eRES</h4>
-                            <h6 class="logo-subtitle-login mb-0">Unit Penilaian Akademik</h6>
                         </div>
                     </div>
                 </div>
@@ -51,6 +50,9 @@
                                                             class='bx bx-mail-send'></i>
                                                         {{ __('Hantar') }}
                                                     </button>
+                                                </div>
+                                                <div class="mt-3 text-center">
+                                                    <a href="{{ route('login') }}">Kembali ke Log Masuk</a>
                                                 </div>
                                             </div>
                                         </form>

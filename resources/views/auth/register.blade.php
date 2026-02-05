@@ -10,7 +10,6 @@
                         <img src="{{ asset('public/assets/images/putih.png') }}" class="logo-icon-login" alt="logo icon">
                         <div class="ms-3">
                             <h4 class="logo-text-login mb-0">eRES</h4>
-                            <h6 class="logo-subtitle-login mb-0">Unit Penilaian Akademik</h6>
                         </div>
                     </div>
                 </div>
@@ -72,13 +71,13 @@
                                             </div>
 
                                             <div class="col-md-6">
-                                                <label for="phone_no" class="form-label">No. Telefon</label>
+                                                <label for="office_phone_no" class="form-label">No. Telefon</label>
                                                 <input type="text"
-                                                    class="form-control {{ $errors->has('phone_no') ? 'is-invalid' : '' }}"
-                                                    id="phone_no" name="phone_no" value="{{ old('phone_no') }}">
-                                                @if ($errors->has('phone_no'))
+                                                    class="form-control {{ $errors->has('office_phone_no') ? 'is-invalid' : '' }}"
+                                                    id="office_phone_no" name="office_phone_no" value="{{ old('office_phone_no') }}">
+                                                @if ($errors->has('office_phone_no'))
                                                     <div class="invalid-feedback">
-                                                        @foreach ($errors->get('phone_no') as $error)
+                                                        @foreach ($errors->get('office_phone_no') as $error)
                                                             {{ $error }}
                                                         @endforeach
                                                     </div>
@@ -145,30 +144,6 @@
                                                 @if ($errors->has('campus_id'))
                                                     <div class="invalid-feedback">
                                                         @foreach ($errors->get('campus_id') as $error)
-                                                            {{ $error }}
-                                                        @endforeach
-                                                    </div>
-                                                @endif
-                                            </div>
-
-                                            <div class="col-md-6">
-                                                <label for="user_type" class="form-label">Jenis Pengguna</label>
-                                                <select id="user_type" name="user_type"
-                                                    class="form-select {{ $errors->has('user_type') ? 'is-invalid' : '' }}"
-                                                    required>
-                                                    <option value="" disabled
-                                                        {{ old('user_type') ? '' : 'selected' }}>Pilih Jenis Pengguna
-                                                    </option>
-                                                    <option value="staf akademik"
-                                                        {{ old('user_type') == 'staf akademik' ? 'selected' : '' }}>Staf
-                                                        Akademik</option>
-                                                    <option value="staf pentadbiran"
-                                                        {{ old('user_type') == 'staf pentadbiran' ? 'selected' : '' }}>Staf
-                                                        Pentadbiran</option>
-                                                </select>
-                                                @if ($errors->has('user_type'))
-                                                    <div class="invalid-feedback">
-                                                        @foreach ($errors->get('user_type') as $error)
                                                             {{ $error }}
                                                         @endforeach
                                                     </div>
