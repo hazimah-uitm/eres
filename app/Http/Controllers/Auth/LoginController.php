@@ -51,7 +51,7 @@ class LoginController extends Controller
 
     public function authenticated(Request $request, $user)
     {
-        return redirect()->route('dashboard')->with('success', 'Anda telah berjaya log masuk!');
+        return redirect()->route('home')->with('success', 'Anda telah berjaya log masuk!');
     }
 
     public function logout(Request $request)

@@ -43,7 +43,7 @@ Route::post('password/reset', 'Auth\ResetPasswordController@reset')->name('passw
 
 Route::middleware('auth')->group(function () {
 
-    Route::get('/dashboard', 'DashboardController@index')->name('dashboard');
+    Route::get('/home', 'DashboardController@index')->name('home');
     //Campus
     Route::get('campus', 'CampusController@index')->name('campus');
     Route::get('campus/view/{id}', 'CampusController@show')->name('campus.show');
@@ -75,7 +75,7 @@ Route::middleware('auth')->group(function () {
     Route::get('/position/search', 'PositionController@search')->name('position.search');
 
 
-    Route::get('/home', 'HomeController@index')->name('home');
+    // Route::get('/home', 'HomeController@index')->name('home');
 
     // User Profile
     Route::get('profile/{id}', 'UserProfileController@show')->name('profile.show');

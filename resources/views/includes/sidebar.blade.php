@@ -11,8 +11,8 @@
 
 <!--navigation-->
 <ul class="metismenu" id="menu">
-    <li class="{{ Request::routeIs('dashboard') ? 'mm-active' : '' }}">
-        <a href="{{ route('dashboard') }}">
+    <li class="{{ Request::routeIs('home') ? 'mm-active' : '' }}">
+        <a href="{{ route('home') }}">
             <div class="parent-icon"><i class='bx bx-home-circle'></i></div>
             <div class="menu-title">Dashboard</div>
         </a>
@@ -27,6 +27,7 @@
         </a>
     </li>
 
+    @hasanyrole('Superadmin|Admin')
     <li class="menu-label">Pengurusan Pengguna</li>
 
     <li class="{{ Request::is('user*') && !Request::is('user-role*') ? 'mm-active' : '' }}">
@@ -85,7 +86,9 @@
             </li>
         </ul>
     </li>
+    @endhasanyrole
 
+    @role('Superadmin')
     <li class="{{ Request::routeIs('logs.debug') ? 'mm-active' : '' }}">
         <a href="{{ route('logs.debug') }}">
             <div class="parent-icon"><i class='bx bxs-bug'></i></div>
@@ -99,5 +102,6 @@
             <div class="menu-title">Log Aktiviti</div>
         </a>
     </li>
+    @endrole
 </ul>
 <!--end navigation-->
