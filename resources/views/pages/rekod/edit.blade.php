@@ -52,7 +52,7 @@
             {{-- Program --}}
             <div class="mb-3">
                 <label for="program_id" class="form-label">Kod Program (Nama Program)</label>
-                <select class="form-select {{ $errors->has('program_id') ? 'is-invalid' : '' }}"
+                <select class="tom-select {{ $errors->has('program_id') ? 'is-invalid' : '' }}"
                         id="program_id" name="program_id" required>
                     <option value="" disabled>Pilih Program</option>
                     @foreach ($programList as $program)
@@ -74,7 +74,7 @@
             {{-- Kursus --}}
             <div class="mb-3">
                 <label for="kursus_id" class="form-label">Kod Kursus (Nama Kursus)</label>
-                <select class="form-select {{ $errors->has('kursus_id') ? 'is-invalid' : '' }}"
+                <select class="tom-select {{ $errors->has('kursus_id') ? 'is-invalid' : '' }}"
                         id="kursus_id" name="kursus_id" required>
                     <option value="" disabled>Pilih Kursus</option>
                     @foreach ($kursusList as $kursus)
