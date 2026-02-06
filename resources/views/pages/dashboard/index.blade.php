@@ -239,7 +239,7 @@
                                             <td>{{ optional($r->created_at)->format('d/m/Y') }}</td>
                                             <td class="text-end">
                                                 @if (!empty($r->file_path))
-                                                    <a href="{{ asset('storage/' . $r->file_path) }}" target="_blank"
+                                                    <a href="{{ asset('public/storage/' . $r->file_path) }}" target="_blank"
                                                         class="btn btn-sm btn-outline-primary">
                                                         <i class="bx bxs-file-pdf"></i>
                                                     </a>

@@ -102,7 +102,7 @@
                 <h6 class="mb-3 text-uppercase">Fail Dimuat Naik</h6>
 
                 @if (!empty($rekod->file_path))
-                    <a href="{{ asset('storage/' . $rekod->file_path) }}"
+                    <a href="{{ asset('public/storage/' . $rekod->file_path) }}"
                        target="_blank"
                        class="btn btn-outline-primary">
                         <i class="bx bxs-file-pdf"></i> Buka Fail PDF

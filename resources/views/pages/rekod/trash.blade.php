@@ -54,7 +54,7 @@
                                     <td>{{ $rekod->kumpulan ?? '-' }}</td>
                                     <td>
                                         @if (!empty($rekod->file_path))
-                                            <a href="{{ asset('storage/' . $rekod->file_path) }}" target="_blank"
+                                            <a href="{{ asset('public/storage/' . $rekod->file_path) }}" target="_blank"
                                                 class="btn btn-outline-primary btn-sm" data-bs-toggle="tooltip"
                                                 data-bs-placement="bottom" title="Buka PDF">
                                                 <i class="bx bxs-file-pdf"></i>

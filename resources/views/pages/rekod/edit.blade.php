@@ -125,7 +125,7 @@
                 @if (!empty($rekod->file_path))
                     <small class="text-muted d-block mt-2">
                         Fail semasa:
-                        <a href="{{ asset('storage/'.$rekod->file_path) }}" target="_blank">Lihat PDF</a>
+                        <a href="{{ asset('public/storage/'.$rekod->file_path) }}" target="_blank">Lihat PDF</a>
                     </small>
                 @endif
 
