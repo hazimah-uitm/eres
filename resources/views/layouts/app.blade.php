@@ -20,13 +20,14 @@
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500&display=swap" rel="stylesheet">
     <link href="{{ asset('public/assets/css/app.css') }}" rel="stylesheet">
     <link href="{{ asset('public/assets/css/icons.css') }}" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/tom-select/dist/css/tom-select.bootstrap5.min.css">
     <title>{{ config('app.name') }}</title>
 </head>
 
 <body class="bg-login">
     <!--wrapper-->
     @if (session('success'))
-    <div id="floating-success-message" class="position-fixed top-0 start-50 translate-middle-x p-3" style="z-index: 11; display: none; animation: fadeInUp 0.5s ease-out;">
+    <div id="floating-success-message" class="position-fixed top-0 start-50 translate-middle-x p-3" style="z-index: 5; display: none; animation: fadeInUp 0.5s ease-out;">
         <div class="alert alert-success alert-dismissible fade show bg-light bg-opacity-75" role="alert">
             {{ session('success') }}
             <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
@@ -85,6 +86,7 @@
     </script>
     <!--app JS-->
     <script src="{{ asset('public/assets/js/app.js') }}"></script>
+    <script src="https://cdn.jsdelivr.net/npm/tom-select/dist/js/tom-select.complete.min.js"></script>
 </body>
 
 </html>

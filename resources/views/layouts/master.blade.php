@@ -68,19 +68,16 @@
 
     <!-- Bootstrap JS -->
     <script src="{{ asset('public/assets/js/bootstrap.bundle.min.js') }}"></script>
+
     <!--plugins-->
     <script src="{{ asset('public/assets/js/jquery.min.js') }}"></script>
-
+    <script src="https://cdn.datatables.net/1.10.21/js/jquery.dataTables.min.js"></script>
+    <script src="https://cdn.datatables.net/1.10.21/js/dataTables.bootstrap4.min.js"></script>
     <script src="{{ asset('public/assets/plugins/metismenu/js/metisMenu.min.js') }}"></script>
     <script src="{{ asset('public/assets/plugins/chartjs/chart.min.js') }}"></script>
     <script src="{{ asset('public/assets/js/index.js') }}"></script>
     <!--app JS-->
     <script src="{{ asset('public/assets/js/app.js') }}"></script>
-    <!-- Select2 CSS -->
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/css/select2.min.css" rel="stylesheet" />
-    <!-- Select2 JS -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/js/select2.min.js"></script>
-
     <script>
         document.addEventListener('DOMContentLoaded', function() {
             // Get the toggle icon element
@@ -100,7 +97,7 @@
         var currentYear = new Date().getFullYear();
 
         // Update the content of the element with the current year
-        document.getElementById("copyright").innerHTML = '© ' + currentYear +
+        document.getElementById("copyright").innerHTML = ' © ' + currentYear +
             ' <a href="https://sarawak.uitm.edu.my/" target="_blank">UiTM Cawangan Sarawak</a>.';
     </script>
     <script>
@@ -142,6 +139,7 @@
             }
         }
     </script>
+    <script src="https://cdn.jsdelivr.net/npm/tom-select/dist/js/tom-select.complete.min.js"></script>
 </body>
 
 </html>

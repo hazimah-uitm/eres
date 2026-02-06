@@ -1,0 +1,58 @@
+@extends('layouts.master')
+
+@section('content')
+<!-- Breadcrumb -->
+<div class="page-breadcrumb d-none d-sm-flex align-items-center mb-3">
+    <div class="breadcrumb-title pe-3">Pengurusan Kursus</div>
+    <div class="ps-3">
+        <nav aria-label="breadcrumb">
+            <ol class="breadcrumb mb-0 p-0">
+                <li class="breadcrumb-item"><a href="{{ route('home') }}"><i class="bx bx-home-alt"></i></a></li>
+                <li class="breadcrumb-item"><a href="{{ route('kursus') }}">Senarai Kursus</a></li>
+                <li class="breadcrumb-item active" aria-current="page">Maklumat {{ ucfirst($kursus->name) }}</li>
+            </ol>
+        </nav>
+    </div>
+    @role('Superadmin')
+    <div class="ms-auto">
+        <a href="{{ route('kursus.edit', $kursus->id) }}">
+            <button type="button" class="btn btn-primary mt-2 mt-lg-0">Kemaskini Maklumat</button>
+        </a>
+    </div>
+    @endrole
+</div>
+<!-- End Breadcrumb -->
+
+<h6 class="mb-0 text-uppercase">Maklumat {{ ucfirst($kursus->name) }}</h6>
+<hr />
+
+<!-- Campus Information Table -->
+<div class="row">
+    <div class="col-md-6">
+        <div class="card">
+            <div class="card-body">
+                <table class="table table-borderless">
+                    <tr>
+                        <th>Program</th>
+                        <td>{{ $kursus->program->name }}</td>
+                    </tr>
+                    <tr>
+                        <th>Kod Kursus</th>
+                        <td>{{ ucfirst($kursus->kod) }}</td>
+                    </tr>
+                    <tr>
+                        <th>Kursus</th>
+                        <td>{{ ucfirst($kursus->name) }}</td>
+                    </tr>
+                    <tr>
+                        <th>Status</th>
+                        <td>{{ $kursus->publish_status }}</td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- End Campus Information Table -->
+<!-- End Page Wrapper -->
+@endsection

@@ -43,6 +43,7 @@ Route::post('password/reset', 'Auth\ResetPasswordController@reset')->name('passw
 
 Route::middleware('auth')->group(function () {
 
+    Route::get('/dashboard', 'DashboardController@index')->name('dashboard');
     //Campus
     Route::get('campus', 'CampusController@index')->name('campus');
     Route::get('campus/view/{id}', 'CampusController@show')->name('campus.show');
@@ -52,6 +53,21 @@ Route::middleware('auth')->group(function () {
     Route::get('ptj', 'PtjController@index')->name('ptj');
     Route::get('ptj/view/{id}', 'PtjController@show')->name('ptj.show');
     Route::get('/ptj/search', 'PtjController@search')->name('ptj.search');
+
+    //Program
+    Route::get('program', 'ProgramController@index')->name('program');
+    Route::get('program/view/{id}', 'ProgramController@show')->name('program.show');
+    Route::get('/program/search', 'ProgramController@search')->name('program.search');
+
+    //Kursus
+    Route::get('kursus', 'KursusController@index')->name('kursus');
+    Route::get('kursus/view/{id}', 'KursusController@show')->name('kursus.show');
+    Route::get('/kursus/search', 'KursusController@search')->name('kursus.search');
+
+    //Rekod
+    Route::get('rekod', 'RekodController@index')->name('rekod');
+    Route::get('rekod/view/{id}', 'RekodController@show')->name('rekod.show');
+    Route::get('/rekod/search', 'RekodController@search')->name('rekod.search');
 
     //Position
     Route::get('position', 'PositionController@index')->name('position');
@@ -119,6 +135,36 @@ Route::middleware('auth')->group(function () {
     Route::get('/ptj/trash', 'PtjController@trashList')->name('ptj.trash');
     Route::get('/ptj/{id}/restore', 'PtjController@restore')->name('ptj.restore');
     Route::delete('/ptj/{id}/force-delete', 'PtjController@forceDelete')->name('ptj.forceDelete');
+
+    //Program
+    Route::get('program/create', 'ProgramController@create')->name('program.create');
+    Route::post('program/store', 'ProgramController@store')->name('program.store');
+    Route::get('program/{id}/edit', 'ProgramController@edit')->name('program.edit');
+    Route::post('program/{id}', 'ProgramController@update')->name('program.update');
+    Route::delete('program/{id}', 'ProgramController@destroy')->name('program.destroy');
+    Route::get('/program/trash', 'ProgramController@trashList')->name('program.trash');
+    Route::get('/program/{id}/restore', 'ProgramController@restore')->name('program.restore');
+    Route::delete('/program/{id}/force-delete', 'ProgramController@forceDelete')->name('program.forceDelete');
+
+    //Kursus
+    Route::get('kursus/create', 'KursusController@create')->name('kursus.create');
+    Route::post('kursus/store', 'KursusController@store')->name('kursus.store');
+    Route::get('kursus/{id}/edit', 'KursusController@edit')->name('kursus.edit');
+    Route::post('kursus/{id}', 'KursusController@update')->name('kursus.update');
+    Route::delete('kursus/{id}', 'KursusController@destroy')->name('kursus.destroy');
+    Route::get('/kursus/trash', 'KursusController@trashList')->name('kursus.trash');
+    Route::get('/kursus/{id}/restore', 'KursusController@restore')->name('kursus.restore');
+    Route::delete('/kursus/{id}/force-delete', 'KursusController@forceDelete')->name('kursus.forceDelete');
+
+    //Rekod
+    Route::get('rekod/create', 'RekodController@create')->name('rekod.create');
+    Route::post('rekod/store', 'RekodController@store')->name('rekod.store');
+    Route::get('rekod/{id}/edit', 'RekodController@edit')->name('rekod.edit');
+    Route::post('rekod/{id}', 'RekodController@update')->name('rekod.update');
+    Route::delete('rekod/{id}', 'RekodController@destroy')->name('rekod.destroy');
+    Route::get('/rekod/trash', 'RekodController@trashList')->name('rekod.trash');
+    Route::get('/rekod/{id}/restore', 'RekodController@restore')->name('rekod.restore');
+    Route::delete('/rekod/{id}/force-delete', 'RekodController@forceDelete')->name('rekod.forceDelete');
 
     //Position
     Route::get('position/create', 'PositionController@create')->name('position.create');

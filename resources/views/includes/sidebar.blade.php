@@ -11,17 +11,19 @@
 
 <!--navigation-->
 <ul class="metismenu" id="menu">
-    <li class="{{ Request::routeIs('home') ? 'mm-active' : '' }}">
-        <a href="{{ route('home') }}">
+    <li class="{{ Request::routeIs('dashboard') ? 'mm-active' : '' }}">
+        <a href="{{ route('dashboard') }}">
             <div class="parent-icon"><i class='bx bx-home-circle'></i></div>
             <div class="menu-title">Dashboard</div>
         </a>
     </li>
 
-    <li class="{{ Request::routeIs('activity-log') ? 'mm-active' : '' }}">
-        <a href="{{ route('activity-log') }}">
-            <div class="parent-icon"><i class='bx bx-history'></i></div>
-            <div class="menu-title">Log Aktiviti</div>
+    <li class="menu-label">Pengurusan Rekod</li>
+
+    <li class="{{ Request::is('rekod*') ? 'mm-active' : '' }}">
+        <a href="{{ route('rekod') }}">
+            <div class="parent-icon"><i class="bx bx-folder-open"></i></div>
+            <div class="menu-title">Rekod</div>
         </a>
     </li>
 
@@ -67,12 +69,34 @@
                 <a href="{{ route('position') }}"><i class="bx bx-right-arrow-alt"></i>Jawatan</a>
             </li>
         </ul>
+        <ul>
+            <li class="{{ Request::is('ptj*') ? 'mm-active' : '' }}">
+                <a href="{{ route('ptj') }}"><i class="bx bx-right-arrow-alt"></i>PTJ</a>
+            </li>
+        </ul>
+        <ul>
+            <li class="{{ Request::is('program*') ? 'mm-active' : '' }}">
+                <a href="{{ route('program') }}"><i class="bx bx-right-arrow-alt"></i>Program</a>
+            </li>
+        </ul>
+        <ul>
+            <li class="{{ Request::is('kursus*') ? 'mm-active' : '' }}">
+                <a href="{{ route('kursus') }}"><i class="bx bx-right-arrow-alt"></i>Kursus</a>
+            </li>
+        </ul>
     </li>
 
     <li class="{{ Request::routeIs('logs.debug') ? 'mm-active' : '' }}">
         <a href="{{ route('logs.debug') }}">
             <div class="parent-icon"><i class='bx bxs-bug'></i></div>
             <div class="menu-title">Debug Log</div>
+        </a>
+    </li>
+
+    <li class="{{ Request::routeIs('activity-log') ? 'mm-active' : '' }}">
+        <a href="{{ route('activity-log') }}">
+            <div class="parent-icon"><i class='bx bx-history'></i></div>
+            <div class="menu-title">Log Aktiviti</div>
         </a>
     </li>
 </ul>
